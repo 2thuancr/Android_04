@@ -1,7 +1,6 @@
 package com.student22110006.baitap04_22110006
 
 import android.os.Bundle
-import android.widget.Adapter
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -12,8 +11,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.student22110006.baitap04_22110006.data.MonHoc
+import com.student22110006.baitap04_22110006.data.MonHocAdapter
+
 
 class ListViewActivity : AppCompatActivity() {
+
+    //khai báo
+    private lateinit var listView: ListView;
+    private lateinit var editText1: EditText;
+    private lateinit var btnThem: Button;
+    private lateinit var btnCapNhat: Button;
+    private lateinit var arrayList: ArrayList<MonHoc>;
+    private lateinit var adapter: MonHocAdapter;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,33 +34,24 @@ class ListViewActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // ánh xạ
-        var editText1 = findViewById<EditText>(R.id.editText1);
-        var btnThem = findViewById<Button>(R.id.btnThem);
-        var btnCapNhat = findViewById<Button>(R.id.btnCapNhat);
 
         var vitri = -1;
 
-        //var listView = findViewById<ListView>(R.id.listview)
-        var lv = findViewById<ListView>(R.id.listview);
-        var arrayList = ArrayList<String>();
-        arrayList.add("Java");
-        arrayList.add("C#");
-        arrayList.add("PHP");
-        arrayList.add("Kotlin");
-        arrayList.add("Dart");
+        // ánh xạ
+        this.AnhXa();
 
         // Tạo Adapter
-        var Ad : ArrayAdapter<String> = ArrayAdapter(
+        adapter = MonHocAdapter(
             this,   // Context: màn hình hiển thị
-            android.R.layout.simple_list_item_1, //Dạng Layout muốn đổ vào
-            arrayList       //Dữ lệu List đỗ vào
+            R.layout.row_monhoc, //Dạng Layout muốn đổ vào
+            this.arrayList       //Dữ lệu List đỗ vào
         );
-        // Gắn Adapter vào ListView
-        lv.adapter = Ad;
+
+        // Truyền dữ liệu từ adapter ra listview
+        this.listView.adapter = this.adapter;
 
         //bắt sự kiện click nhanh trên từng dòng của Listview
-        lv.setOnItemClickListener { adapterView, view, position, id ->
+        listView.setOnItemClickListener { adapterView, view, position, id ->
              var text = adapterView.getItemAtPosition(position)
             //var text = arrayList.get(position)
             // Hiển thị vị trí item được click
@@ -57,8 +59,9 @@ class ListViewActivity : AppCompatActivity() {
             vitri = position
             editText1.setText(text.toString())
         }
+
         //bắt sự kiện click giữ trên từng dòng của Listview
-        lv.setOnItemLongClickListener { adapterView, view, position, id ->
+        listView.setOnItemLongClickListener { adapterView, view, position, id ->
             var text = adapterView.getItemAtPosition(position)
             // Hiển thị hộp thoại xác nhận xóa
             AlertDialog.Builder(this)
@@ -69,7 +72,7 @@ class ListViewActivity : AppCompatActivity() {
                     arrayList.removeAt(position)
 
                     // Cập nhật Adapter
-                    Ad.notifyDataSetChanged()
+                    adapter.notifyDataSetChanged()
 
                     Toast.makeText(this, "Đã xóa $text", Toast.LENGTH_SHORT).show()
                 }
@@ -78,17 +81,41 @@ class ListViewActivity : AppCompatActivity() {
 
             return@setOnItemLongClickListener true
         }
+
         btnThem.setOnClickListener {
             var text = editText1.text.toString()
-            arrayList.add(text)
-            Ad.notifyDataSetChanged()
-            editText1.setText("")
+            arrayList.add(MonHoc(text,"Môn học $text", R.drawable.siba));
+            this.adapter.notifyDataSetChanged()
+            this.editText1.setText("")
         }
+
         btnCapNhat.setOnClickListener {
-            var text = editText1.text.toString()
-            arrayList.set(vitri, text)
-            Ad.notifyDataSetChanged()
-            editText1.setText("")
+            val text = editText1.text.toString()
+            if (vitri >= 0 && vitri < arrayList.size) {
+                arrayList[vitri] = MonHoc(text, "Môn học $text", R.drawable.siba)
+                adapter.notifyDataSetChanged()
+                editText1.setText("")
+                Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Chọn một môn học để cập nhật!", Toast.LENGTH_SHORT).show()
+            }
         }
+
     }
+
+    private fun AnhXa() {
+        this.listView = findViewById<ListView>(R.id.listview);
+        this.editText1 = findViewById<EditText>(R.id.editText1);
+        this.btnThem = findViewById<Button>(R.id.btnThem);
+        this.btnCapNhat = findViewById<Button>(R.id.btnCapNhat);
+
+        //Thêm dữ liệu vào List
+        arrayList = ArrayList()
+        arrayList.add(MonHoc("Java","Java 1",R.drawable.java));
+        arrayList.add(MonHoc("C#","C# 1",R.drawable.c));
+        arrayList.add(MonHoc("PHP","PHP 1",R.drawable.php));
+        arrayList.add(MonHoc("Kotlin","Kotlin  1",R.drawable.kotlin));
+        arrayList.add(MonHoc("Dart","Dart 1",R.drawable.dart));
+    }
+
 }

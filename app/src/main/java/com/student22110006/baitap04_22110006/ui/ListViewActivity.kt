@@ -1,7 +1,6 @@
 package com.student22110006.baitap04_22110006
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
@@ -43,7 +42,7 @@ class ListViewActivity : AppCompatActivity() {
         // Tạo Adapter
         adapter = MonHocAdapter(
             this,   // Context: màn hình hiển thị
-            R.layout.row_monhoc, //Dạng Layout muốn đổ vào
+            R.layout.row_monhoc_list_view, //Dạng Layout muốn đổ vào
             this.arrayList       //Dữ lệu List đỗ vào
         );
 
@@ -52,12 +51,12 @@ class ListViewActivity : AppCompatActivity() {
 
         //bắt sự kiện click nhanh trên từng dòng của Listview
         listView.setOnItemClickListener { adapterView, view, position, id ->
-             var text = adapterView.getItemAtPosition(position)
+             var monHoc = adapterView.getItemAtPosition(position) as MonHoc
             //var text = arrayList.get(position)
             // Hiển thị vị trí item được click
-            Toast.makeText(this, "$position - $text", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "$position - ${monHoc.name}", Toast.LENGTH_SHORT).show()
             vitri = position
-            editText1.setText(text.toString())
+            editText1.setText(monHoc.name)
         }
 
         //bắt sự kiện click giữ trên từng dòng của Listview

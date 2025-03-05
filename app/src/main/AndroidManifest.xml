@@ -13,10 +13,10 @@
         android:theme="@style/Theme.BaiTap04_22110006"
         tools:targetApi="31">
         <activity
-            android:name=".GridViewActivity"
+            android:name=".ListViewActivity"
             android:exported="false" />
         <activity
-            android:name=".ListViewActivity"
+            android:name=".GridViewActivity"
             android:exported="true">
 
             <intent-filter>

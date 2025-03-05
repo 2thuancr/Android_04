@@ -1,6 +1,4 @@
-package com.student22110006.baitap04_22110006.data;
-
-import androidx.annotation.NonNull;
+package com.student22110006.baitap04_22110006.data.model;
 
 public class MonHoc {
     private String name;

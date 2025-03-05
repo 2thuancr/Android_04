@@ -1,22 +1,21 @@
-package com.student22110006.baitap04_22110006
+package com.student22110006.baitap04_22110006.ui
 
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView.OnItemClickListener
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.GridView
-import android.widget.ListView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.student22110006.baitap04_22110006.data.MonHoc
-import com.student22110006.baitap04_22110006.data.MonHocAdapter
 
+import com.student22110006.baitap04_22110006.R
+import com.student22110006.baitap04_22110006.data.model.MonHoc
+import com.student22110006.baitap04_22110006.data.adapter.MonHocAdapter
 
 class GridViewActivity : AppCompatActivity() {
 
@@ -44,11 +43,12 @@ class GridViewActivity : AppCompatActivity() {
         this.AnhXa();
 
         //Tạo ArrayAdapter
-        this.adapter = MonHocAdapter(
-            this,
-            R.layout.row_monhoc_grid_view,
-            arrayList
-        );
+        this.adapter =
+            MonHocAdapter(
+                this,
+                R.layout.row_monhoc_grid_view,
+                arrayList
+            );
 
         //truyền dữ liệu từ adapter ra gridview
         this.gridView.setAdapter(adapter);
@@ -85,7 +85,11 @@ class GridViewActivity : AppCompatActivity() {
 
         this.btnThem.setOnClickListener(View.OnClickListener {
             val name = this.editText1.text.toString()
-            var monhoc = MonHoc(name, "Môn học $name", R.drawable.siba)
+            var monhoc = MonHoc(
+                name,
+                "Môn học $name",
+                R.drawable.siba
+            )
             this.arrayList.add(monhoc)
             this.adapter.notifyDataSetChanged()
         })
@@ -93,7 +97,12 @@ class GridViewActivity : AppCompatActivity() {
         this.btnCapNhat.setOnClickListener(View.OnClickListener {
             val text = editText1.text.toString()
             if (vitri >= 0 && vitri < arrayList.size) {
-                arrayList[vitri] = MonHoc(text, "Môn học $text", R.drawable.siba)
+                arrayList[vitri] =
+                    MonHoc(
+                        text,
+                        "Môn học $text",
+                        R.drawable.siba
+                    )
                 adapter.notifyDataSetChanged()
                 editText1.setText("")
                 Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
@@ -121,10 +130,40 @@ class GridViewActivity : AppCompatActivity() {
 
         //Thêm dữ liệu vào List
         arrayList = ArrayList()
-        arrayList.add(MonHoc("Java","Java 1",R.drawable.java));
-        arrayList.add(MonHoc("C#","C# 1",R.drawable.c));
-        arrayList.add(MonHoc("PHP","PHP 1",R.drawable.php));
-        arrayList.add(MonHoc("Kotlin","Kotlin  1",R.drawable.kotlin));
-        arrayList.add(MonHoc("Dart","Dart 1",R.drawable.dart));
+        arrayList.add(
+            MonHoc(
+                "Java",
+                "Java 1",
+                R.drawable.java
+            )
+        );
+        arrayList.add(
+            MonHoc(
+                "C#",
+                "C# 1",
+                R.drawable.c
+            )
+        );
+        arrayList.add(
+            MonHoc(
+                "PHP",
+                "PHP 1",
+                R.drawable.php
+            )
+        );
+        arrayList.add(
+            MonHoc(
+                "Kotlin",
+                "Kotlin  1",
+                R.drawable.kotlin
+            )
+        );
+        arrayList.add(
+            MonHoc(
+                "Dart",
+                "Dart 1",
+                R.drawable.dart
+            )
+        );
     }
 }

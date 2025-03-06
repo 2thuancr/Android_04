@@ -6,6 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -29,6 +31,25 @@ class RecycleViewActivity : AppCompatActivity() {
             insets
         }
 
+        // Ánh xạ
+        this.AnhXa();
+
+        // Tạo adapter
+        mSongAdapter = SongAdapter(this, mSongs)
+        rvSongs.adapter = mSongAdapter
+
+        // Tạo Layout Manager
+
+        // val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        // rvSongs.layoutManager = linearLayoutManager
+        val gridLayoutManager = GridLayoutManager(this, 2)
+        rvSongs.layoutManager = gridLayoutManager
+
+        // Thêm animation
+        rvSongs.itemAnimator = DefaultItemAnimator()
+    }
+
+    private fun AnhXa() {
         rvSongs = findViewById<View>(R.id.rv_songs) as RecyclerView
 
         // Create song data
@@ -121,12 +142,5 @@ class RecycleViewActivity : AppCompatActivity() {
                 "Thiên Ngôn"
             )
         )
-
-        mSongAdapter = SongAdapter(this, mSongs)
-        rvSongs.adapter = mSongAdapter
-
-        val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rvSongs.layoutManager = linearLayoutManager
-
     }
 }

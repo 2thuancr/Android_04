@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:paddingTop="?attr/actionBarSize"
-    tools:context=".RecycleViewActivity">
+    tools:context=".ui.RecycleViewActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_songs"

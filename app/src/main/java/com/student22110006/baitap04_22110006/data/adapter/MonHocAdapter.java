@@ -1,4 +1,4 @@
-package com.student22110006.baitap04_22110006.data;
+package com.student22110006.baitap04_22110006.data.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.student22110006.baitap04_22110006.R;
+import com.student22110006.baitap04_22110006.data.model.MonHoc;
 
 import java.util.List;
 
@@ -72,8 +73,8 @@ public class MonHocAdapter extends BaseAdapter {
     }
 
     private class ViewHolder{
-    TextView textName,textDesc;
-    ImageView imagePic;
+        TextView textName,textDesc;
+        ImageView imagePic;
     }
 }
 

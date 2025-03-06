@@ -1,4 +1,4 @@
-package com.student22110006.baitap04_22110006
+package com.student22110006.baitap04_22110006.ui
 
 import android.os.Bundle
 import android.widget.Button
@@ -10,9 +10,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.student22110006.baitap04_22110006.data.MonHoc
-import com.student22110006.baitap04_22110006.data.MonHocAdapter
 
+import com.student22110006.baitap04_22110006.R
+import com.student22110006.baitap04_22110006.data.model.MonHoc
+import com.student22110006.baitap04_22110006.data.adapter.MonHocAdapter
 
 class ListViewActivity : AppCompatActivity() {
 
@@ -40,11 +41,12 @@ class ListViewActivity : AppCompatActivity() {
         this.AnhXa();
 
         // Tạo Adapter
-        adapter = MonHocAdapter(
-            this,   // Context: màn hình hiển thị
-            R.layout.row_monhoc_list_view, //Dạng Layout muốn đổ vào
-            this.arrayList       //Dữ lệu List đỗ vào
-        );
+        adapter =
+            MonHocAdapter(
+                this,   // Context: màn hình hiển thị
+                R.layout.row_monhoc_list_view, //Dạng Layout muốn đổ vào
+                this.arrayList       //Dữ lệu List đỗ vào
+            );
 
         // Truyền dữ liệu từ adapter ra listview
         this.listView.adapter = this.adapter;
@@ -83,7 +85,13 @@ class ListViewActivity : AppCompatActivity() {
 
         btnThem.setOnClickListener {
             var text = editText1.text.toString()
-            arrayList.add(MonHoc(text,"Môn học $text", R.drawable.siba));
+            arrayList.add(
+                MonHoc(
+                    text,
+                    "Môn học $text",
+                    R.drawable.siba
+                )
+            );
             this.adapter.notifyDataSetChanged()
             this.editText1.setText("")
         }
@@ -91,7 +99,12 @@ class ListViewActivity : AppCompatActivity() {
         btnCapNhat.setOnClickListener {
             val text = editText1.text.toString()
             if (vitri >= 0 && vitri < arrayList.size) {
-                arrayList[vitri] = MonHoc(text, "Môn học $text", R.drawable.siba)
+                arrayList[vitri] =
+                    MonHoc(
+                        text,
+                        "Môn học $text",
+                        R.drawable.siba
+                    )
                 adapter.notifyDataSetChanged()
                 editText1.setText("")
                 Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show()
@@ -110,11 +123,41 @@ class ListViewActivity : AppCompatActivity() {
 
         //Thêm dữ liệu vào List
         arrayList = ArrayList()
-        arrayList.add(MonHoc("Java","Java 1",R.drawable.java));
-        arrayList.add(MonHoc("C#","C# 1",R.drawable.c));
-        arrayList.add(MonHoc("PHP","PHP 1",R.drawable.php));
-        arrayList.add(MonHoc("Kotlin","Kotlin  1",R.drawable.kotlin));
-        arrayList.add(MonHoc("Dart","Dart 1",R.drawable.dart));
+        arrayList.add(
+            MonHoc(
+                "Java",
+                "Java 1",
+                R.drawable.java
+            )
+        );
+        arrayList.add(
+            MonHoc(
+                "C#",
+                "C# 1",
+                R.drawable.c
+            )
+        );
+        arrayList.add(
+            MonHoc(
+                "PHP",
+                "PHP 1",
+                R.drawable.php
+            )
+        );
+        arrayList.add(
+            MonHoc(
+                "Kotlin",
+                "Kotlin  1",
+                R.drawable.kotlin
+            )
+        );
+        arrayList.add(
+            MonHoc(
+                "Dart",
+                "Dart 1",
+                R.drawable.dart
+            )
+        );
     }
 
 }

@@ -40,10 +40,10 @@ class RecycleViewActivity : AppCompatActivity() {
 
         // Tạo Layout Manager
 
-        // val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        // rvSongs.layoutManager = linearLayoutManager
-        val gridLayoutManager = GridLayoutManager(this, 2)
-        rvSongs.layoutManager = gridLayoutManager
+        val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rvSongs.layoutManager = linearLayoutManager
+        // val gridLayoutManager = GridLayoutManager(this, 2)
+        // rvSongs.layoutManager = gridLayoutManager
 
         // Thêm animation
         rvSongs.itemAnimator = DefaultItemAnimator()

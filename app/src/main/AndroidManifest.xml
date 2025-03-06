@@ -12,24 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BaiTap04_22110006"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.MainAnimationActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.UserActivity"
-            android:exported="true">
-        </activity>
-
-        <activity
-            android:name=".ui.RecycleViewActivity"
-            android:exported="true">
-        </activity>
 
         <activity
             android:name=".ui.ListViewActivity"
@@ -39,6 +21,28 @@
         <activity
             android:name=".ui.GridViewActivity"
             android:exported="true">
+        </activity>
+
+        <!-- Init RecyleView-->
+        <activity
+            android:name=".ui.RecycleViewActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- Multiple View Type trong RecyclerView-->
+        <activity
+            android:name=".ui.UserActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- Animation in RecyclerView -->
+        <activity
+            android:name=".ui.MainAnimationActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
